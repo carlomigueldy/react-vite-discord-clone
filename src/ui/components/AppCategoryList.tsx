@@ -14,7 +14,6 @@ export default function CategoryList() {
       paddingX="5px"
     >
       <CategoryChannelList></CategoryChannelList>
-      <CategoryChannelList></CategoryChannelList>
     </Box>
   );
 }
