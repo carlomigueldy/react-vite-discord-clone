@@ -5,11 +5,9 @@ import React from "react";
 export default function AppServerSidebar() {
   return (
     <Box
-      top="0"
-      left="0"
       width="100px"
-      height="100%"
-      padding="5px"
+      paddingX="5px"
+      paddingTop="15px"
       overflowX="hidden"
       backgroundColor="gray.800"
       display="flex"
