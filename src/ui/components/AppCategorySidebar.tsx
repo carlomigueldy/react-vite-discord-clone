@@ -1,13 +1,25 @@
-import { InfoOutlineIcon, RepeatIcon, SettingsIcon } from "@chakra-ui/icons";
+import {
+  ChevronDownIcon,
+  InfoOutlineIcon,
+  RepeatIcon,
+  SettingsIcon,
+} from "@chakra-ui/icons";
 import {
   Avatar,
   Box,
+  Button,
   Center,
   HStack,
   IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Text,
 } from "@chakra-ui/react";
 import React from "react";
+import CategoryChannelList from "./AppCategoryChannelList";
+import CategoryList from "./AppCategoryList";
 
 export default function AppCategorySidebar() {
   return (
@@ -20,67 +32,41 @@ export default function AppCategorySidebar() {
     >
       <Box
         height="50px"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        paddingX="5px"
         backgroundColor="gray.900"
         borderBottomColor="gray"
         borderBottomWidth="1px"
-      />
+      >
+        <Menu>
+          <MenuButton
+            as={Button}
+            color="white"
+            width="full"
+            backgroundColor="transparent"
+            rightIcon={<ChevronDownIcon />}
+            _hover={{ background: "none" }}
+            _active={{ background: "none" }}
+          >
+            <Text maxW="225px" isTruncated>
+              Aviation Software Development
+            </Text>
+          </MenuButton>
+          <MenuList>
+            <MenuItem>Download</MenuItem>
+            <MenuItem>Create a Copy</MenuItem>
+            <MenuItem>Mark as Draft</MenuItem>
+            <MenuItem>Delete</MenuItem>
+            <MenuItem>Attend a Workshop</MenuItem>
+          </MenuList>
+        </Menu>
+      </Box>
 
       <CategoryList />
 
       <BottomSection />
-    </Box>
-  );
-}
-
-function CategoryList() {
-  return (
-    <Box
-      flexGrow={1}
-      height="0"
-      display="flex"
-      flexDirection="column"
-      paddingTop="10px"
-      paddingX="5px"
-    >
-      <CategoryItem active label="💬-general" />
-      <CategoryItem label="🎙️-announcement" />
-      <CategoryItem label="🔵-tasks" />
-      <CategoryItem label="🧰-guide" />
-      <CategoryItem label="🤯-help" />
-      <CategoryItem label="🚫-absent-notice" />
-      <CategoryItem label="📄-report-drafts" />
-      <CategoryItem label="💸-invoice" />
-      <CategoryItem label="🔧-needs-hotfix" />
-      <CategoryItem label="🚀-schema-updates" />
-    </Box>
-  );
-}
-
-type CategoryItemProps = {
-  label: string;
-  active?: boolean;
-};
-
-function CategoryItem({ label, active }: CategoryItemProps) {
-  return (
-    <Box
-      display="flex"
-      justifyContent="start"
-      alignItems="center"
-      padding="5px"
-      backgroundColor={active ? "gray.500" : "transparent"}
-      borderRadius="3px"
-      marginY="2px"
-      cursor="pointer"
-      _hover={{
-        backgroundColor: "gray.600",
-      }}
-    >
-      <Text marginRight="10px" fontStyle="italic" fontSize="xl">
-        #
-      </Text>
-      <Text color="white">{label}</Text>
-      <Box></Box>
     </Box>
   );
 }
