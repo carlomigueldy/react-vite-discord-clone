@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/layout";
 import React from "react";
 import CategoryChannelList from "./AppCategoryChannelList";
 
-export default function CategoryList() {
+export default function AppCategoryList() {
   return (
     <Box
       flexGrow={1}

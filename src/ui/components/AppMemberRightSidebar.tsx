@@ -1,6 +1,5 @@
 import { Box } from "@chakra-ui/layout";
 import React from "react";
-import CategoryList from "./AppCategoryList";
 import AppMemberList from "./AppMemberList";
 
 export default function AppMemberRightSidebar() {

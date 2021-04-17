@@ -18,9 +18,18 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import CategoryList from "./AppCategoryList";
+import { supabase } from "../../app/supabase";
+import { useAuth } from "../../hooks/useAuth";
+import AppCategoryList from "./AppCategoryList";
 
 export default function AppCategorySidebar() {
+  async function loginWithEmail() {
+    const res = await supabase.auth.signIn({
+      email: "carlomigueldy@gmail.com",
+    });
+    console.log("[loginWithEmail]", res);
+  }
+
   return (
     <Box
       width="400px"
@@ -54,6 +63,7 @@ export default function AppCategorySidebar() {
             </Text>
           </MenuButton>
           <MenuList>
+            <MenuItem onClick={() => loginWithEmail()}>Sign In</MenuItem>
             <MenuItem>Download</MenuItem>
             <MenuItem>Create a Copy</MenuItem>
             <MenuItem>Mark as Draft</MenuItem>
@@ -63,7 +73,7 @@ export default function AppCategorySidebar() {
         </Menu>
       </Box>
 
-      <CategoryList />
+      <AppCategoryList />
 
       <BottomSection />
     </Box>
@@ -71,6 +81,10 @@ export default function AppCategorySidebar() {
 }
 
 function BottomSection() {
+  const user = useAuth();
+
+  console.log("[useAuth]", user);
+
   return (
     <Box
       paddingY="12px"
@@ -83,7 +97,7 @@ function BottomSection() {
         <Avatar size="sm" />
       </Center>
       <Box marginX="10px">
-        <Text color="white">carlomigueldy</Text>
+        <Text color="white">{user?.email ?? "Unknown user"}</Text>
         <Text color="gray.500" fontSize="xs">
           #1240
         </Text>
