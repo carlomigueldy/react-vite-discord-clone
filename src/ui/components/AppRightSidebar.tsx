@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/layout";
 import React from "react";
 import AppMemberList from "./AppMemberList";
 
-export default function AppMemberRightSidebar() {
+export default function AppRightSidebar() {
   return (
     <Box
       width="325px"

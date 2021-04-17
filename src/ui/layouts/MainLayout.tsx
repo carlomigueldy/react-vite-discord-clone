@@ -1,9 +1,9 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 
-import AppCategorySidebar from "../components/AppCategorySidebar";
+import AppLeftSidebar from "../components/AppLeftSidebar";
 import AppMainContent from "../components/AppMainContent";
-import AppServerSidebar from "../components/AppServerSidebar";
+import AppMainSidebar from "../components/AppMainSidebar";
 
 type Props = {
   children: JSX.Element;
@@ -12,8 +12,8 @@ type Props = {
 export default function AppMainLayout({ children }: Props) {
   return (
     <Box height="100vh" display="flex" justifyContent="space-between">
-      <AppServerSidebar />
-      <AppCategorySidebar />
+      <AppMainSidebar />
+      <AppLeftSidebar />
       <AppMainContent />
     </Box>
   );

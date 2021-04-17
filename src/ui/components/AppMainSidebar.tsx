@@ -2,7 +2,7 @@ import { Avatar } from "@chakra-ui/avatar";
 import { Box, Divider } from "@chakra-ui/layout";
 import React from "react";
 
-export default function AppServerSidebar() {
+export default function AppMainSidebar() {
   return (
     <Box
       width="100px"

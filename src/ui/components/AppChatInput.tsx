@@ -3,6 +3,7 @@ import { Box } from "@chakra-ui/layout";
 import { IconButton } from "@chakra-ui/button";
 import { AddIcon, AtSignIcon, CalendarIcon, LinkIcon } from "@chakra-ui/icons";
 import { Input } from "@chakra-ui/input";
+import AppIconButton from "./AppIconButton";
 
 export default function AppChatInput() {
   return (
@@ -10,44 +11,27 @@ export default function AppChatInput() {
       <Box
         display="flex"
         justifyContent="space-around"
+        alignItems="center"
         backgroundColor="gray.600"
         padding="5px"
         borderRadius="8px"
       >
-        <IconButton
-          aria-label="Attach files"
-          borderRadius="50%"
+        <AppIconButton
+          ariaLabel="Attach files"
           size="sm"
-          marginX="5px"
+          withBackground
           icon={<AddIcon />}
         />
+        <Box marginX="3px" />
         <Input
           height="35px"
           backgroundColor="gray.600"
           color="white"
           borderColor="none"
         />
-        <IconButton
-          aria-label="Attach files"
-          borderRadius="50%"
-          size="sm"
-          marginX="5px"
-          icon={<CalendarIcon />}
-        />
-        <IconButton
-          aria-label="Select giphy"
-          borderRadius="50%"
-          size="sm"
-          marginX="5px"
-          icon={<LinkIcon />}
-        />
-        <IconButton
-          aria-label="Select emoji"
-          borderRadius="50%"
-          size="sm"
-          marginX="5px"
-          icon={<AtSignIcon />}
-        />
+        <AppIconButton ariaLabel="Attach files" icon={<CalendarIcon />} />
+        <AppIconButton ariaLabel="Select giphy" icon={<LinkIcon />} />
+        <AppIconButton ariaLabel="Select emoji" icon={<AtSignIcon />} />
       </Box>
     </Box>
   );

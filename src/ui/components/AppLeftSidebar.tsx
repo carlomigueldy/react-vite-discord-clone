@@ -21,8 +21,9 @@ import React from "react";
 import { supabase } from "../../app/supabase";
 import { useAuth } from "../../hooks/useAuth";
 import AppCategoryList from "./AppCategoryList";
+import AppIconButton from "./AppIconButton";
 
-export default function AppCategorySidebar() {
+export default function AppLeftSidebar() {
   async function loginWithEmail() {
     const res = await supabase.auth.signIn({
       email: "carlomigueldy@gmail.com",
@@ -107,24 +108,18 @@ function BottomSection() {
         </Text>
       </Box>
       <HStack>
-        <IconButton
-          aria-label="Mute mic"
-          borderRadius="50%"
-          size="sm"
+        <AppIconButton
+          ariaLabel="Mute mic"
           icon={<InfoOutlineIcon />}
-        ></IconButton>
-        <IconButton
-          aria-label="Mute mic"
-          borderRadius="50%"
-          size="sm"
+        ></AppIconButton>
+        <AppIconButton
+          ariaLabel="Mute mic"
           icon={<RepeatIcon />}
-        ></IconButton>
-        <IconButton
-          aria-label="Mute mic"
-          borderRadius="50%"
-          size="sm"
+        ></AppIconButton>
+        <AppIconButton
+          ariaLabel="Mute mic"
           icon={<SettingsIcon />}
-        ></IconButton>
+        ></AppIconButton>
       </HStack>
     </Box>
   );

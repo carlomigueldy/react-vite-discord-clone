@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@chakra-ui/layout";
 import AppChatContainer from "./AppChatContainer";
 import AppMainTopbar from "./AppMainTopbar";
-import AppMemberRightSidebar from "./AppMemberRightSidebar";
+import AppRightSidebar from "./AppRightSidebar";
 
 export default function AppMainContent() {
   return (
@@ -18,7 +18,7 @@ export default function AppMainContent() {
       <Box flexGrow={1} display="flex" justifyContent="space-between">
         <AppChatContainer />
 
-        <AppMemberRightSidebar />
+        <AppRightSidebar />
       </Box>
     </Box>
   );
