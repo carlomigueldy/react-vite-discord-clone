@@ -26,16 +26,14 @@ export default function AppMemberListItem({
     >
       <Avatar size="sm" />
       <Box width="10px" />
-      <Text display="flex" color="white">
-        {name}
-        {isOwner ? (
-          <Box marginX="5px">
-            <Tooltip aria-label="server owner tooltip" label="Server owner">
-              👑
-            </Tooltip>
-          </Box>
-        ) : null}
-      </Text>
+      <Text color="white">{name}</Text>
+      {isOwner ? (
+        <Box marginX="5px">
+          <Tooltip aria-label="server owner tooltip" label="Server owner">
+            👑
+          </Tooltip>
+        </Box>
+      ) : null}
     </Box>
   );
 }
