@@ -11,7 +11,7 @@ export default function AppPlaceholderItem() {
       <Box
         height="225px"
         width="500px"
-        borderRadius="10px"
+        borderRadius="sm"
         backgroundColor="gray.500"
       ></Box>
     </Box>
