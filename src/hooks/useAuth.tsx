@@ -6,7 +6,7 @@ export function useAuth(): User | null {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    setUser(supabase?.auth?.user());
+    setUser(supabase.auth.user());
   }, []);
 
   return user;

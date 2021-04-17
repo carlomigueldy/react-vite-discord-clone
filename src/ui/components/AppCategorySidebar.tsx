@@ -26,13 +26,14 @@ export default function AppCategorySidebar() {
   async function loginWithEmail() {
     const res = await supabase.auth.signIn({
       email: "carlomigueldy@gmail.com",
+      // email: "dev@dev.com",
     });
     console.log("[loginWithEmail]", res);
   }
 
   return (
     <Box
-      width="400px"
+      width="300px"
       display="flex"
       flexDirection="column"
       justifyContent="space-between"
@@ -97,7 +98,10 @@ function BottomSection() {
         <Avatar size="sm" />
       </Center>
       <Box marginX="10px">
-        <Text color="white">{user?.email ?? "Unknown user"}</Text>
+        <Text color="white" maxW="100px" fontSize="sm" isTruncated>
+          {user?.email ?? "Unknown user"}
+        </Text>
+
         <Text color="gray.500" fontSize="xs">
           #1240
         </Text>
