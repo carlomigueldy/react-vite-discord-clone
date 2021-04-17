@@ -4,7 +4,7 @@ import "./App.css";
 import AppRouteProvider from "./routes/AppRouteProvider";
 
 import "@fontsource/sora";
-import MainLayout from "./ui/layouts/MainLayout";
+import AppMainLayout from "./ui/layouts/MainLayout";
 
 const theme = extendTheme({
   fonts: {
@@ -16,9 +16,9 @@ const theme = extendTheme({
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <MainLayout>
+      <AppMainLayout>
         <AppRouteProvider></AppRouteProvider>
-      </MainLayout>
+      </AppMainLayout>
     </ChakraProvider>
   );
 }
