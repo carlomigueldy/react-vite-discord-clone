@@ -2,6 +2,7 @@ import React from "react";
 import { Box } from "@chakra-ui/layout";
 import AppPlaceholderItem from "./AppPlaceholderItem";
 import AppChatInput from "./AppChatInput";
+import { colors } from "../theme/colors";
 
 export default function AppChatContainer() {
   return (
@@ -10,6 +11,7 @@ export default function AppChatContainer() {
       display="flex"
       justifyContent="space-between"
       flexDirection="column"
+      backgroundColor={colors.darkMedium}
     >
       <Box
         display="flex"

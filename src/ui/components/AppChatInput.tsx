@@ -4,15 +4,16 @@ import { IconButton } from "@chakra-ui/button";
 import { AddIcon, AtSignIcon, CalendarIcon, LinkIcon } from "@chakra-ui/icons";
 import { Input } from "@chakra-ui/input";
 import AppIconButton from "./AppIconButton";
+import { colors } from "../theme/colors";
 
 export default function AppChatInput() {
   return (
-    <Box height="70px" paddingX="15px" backgroundColor="gray.900">
+    <Box height="70px" paddingX="15px" backgroundColor={colors.darkMedium}>
       <Box
         display="flex"
         justifyContent="space-around"
         alignItems="center"
-        backgroundColor="gray.600"
+        backgroundColor={colors.darkLight}
         padding="5px"
         borderRadius="8px"
       >
@@ -25,9 +26,10 @@ export default function AppChatInput() {
         <Box marginX="3px" />
         <Input
           height="35px"
-          backgroundColor="gray.600"
+          backgroundColor="transparent"
           color="white"
-          borderColor="none"
+          borderColor="transparent"
+          placeholder="Message 💬-general"
         />
         <AppIconButton ariaLabel="Attach files" icon={<CalendarIcon />} />
         <AppIconButton ariaLabel="Select giphy" icon={<LinkIcon />} />

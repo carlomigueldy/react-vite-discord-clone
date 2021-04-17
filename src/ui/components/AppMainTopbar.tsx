@@ -9,13 +9,14 @@ import {
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
 import React from "react";
+import { colors } from "../theme/colors";
 import AppIconButton from "./AppIconButton";
 
 export default function AppMainTopbar() {
   return (
     <Box
       height="50px"
-      backgroundColor="gray.800"
+      backgroundColor={colors.darkMedium}
       borderBottomColor="gray"
       borderBottomWidth="1px"
       display="flex"
