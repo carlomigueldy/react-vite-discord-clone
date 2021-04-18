@@ -25,25 +25,41 @@ export default function AppMainTopbar() {
       paddingX="10px"
     >
       <AppMainTopbarChannelName />
-      <Box display="flex">
+      <Box display="flex" alignItems="center" justifyContent="center">
         <AppIconButton
+          tooltip="Mute a channel"
           ariaLabel="Mute channel"
           icon={<BellIcon />}
         ></AppIconButton>
         <AppIconButton
+          tooltip="Pinned Messages"
           ariaLabel="View pinned messages"
           icon={<AtSignIcon />}
         ></AppIconButton>
         <AppIconButton
+          tooltip="Member List"
           ariaLabel="Toggle Memberlist"
           icon={<StarIcon />}
         ></AppIconButton>
-        <Input placeholder="Search" color="white" />
+        <Input
+          placeholder="Search"
+          color="white"
+          width="150px"
+          size="sm"
+          borderRadius="md"
+          borderColor="transparent"
+          backgroundColor={colors.grayDarkest}
+          _focus={{
+            width: "225px",
+          }}
+        />
         <AppIconButton
+          tooltip="Inbox"
           ariaLabel="See inbox"
           icon={<TimeIcon />}
         ></AppIconButton>
         <AppIconButton
+          tooltip="Help"
           ariaLabel="Toggle Memberlist"
           icon={<QuestionIcon />}
         ></AppIconButton>
