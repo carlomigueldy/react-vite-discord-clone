@@ -7,8 +7,6 @@ import { supabase } from "../../app/supabase";
 import { Message } from "../../app/datamodels";
 import { Avatar } from "@chakra-ui/avatar";
 import { useToast } from "@chakra-ui/toast";
-import useSound from "use-sound";
-import chatSound from "../../assets/notifications/new-chat.mp3";
 
 const CHANNEL_ID = "72399b52-0093-4522-b3b0-eae663805c73";
 
@@ -16,7 +14,6 @@ export default function AppChatContainer() {
   const [messages, setMessages] = useState<Message[]>([]);
   const toast = useToast();
   const bottom = createRef<any>();
-  const [playSound] = useSound(chatSound);
 
   function scrollToBottom() {
     bottom.current?.scrollIntoView({ behavior: "smooth" });
@@ -26,7 +23,6 @@ export default function AppChatContainer() {
     supabase
       .from<Message>(`messages`)
       .on("INSERT", (payload) => {
-        playSound();
         toast({
           title: "New message",
           description: payload?.new?.text,
