@@ -1,14 +1,77 @@
-import React from "react";
-import { Box } from "@chakra-ui/layout";
+import React, { useState } from "react";
+import { Box, Text } from "@chakra-ui/layout";
 import { IconButton } from "@chakra-ui/button";
 import { AddIcon, AtSignIcon, CalendarIcon, LinkIcon } from "@chakra-ui/icons";
 import { Input } from "@chakra-ui/input";
 import AppIconButton from "./AppIconButton";
 import { colors } from "../theme/colors";
+import { supabase } from "../../app/supabase";
+import { Message } from "../../app/datamodels";
+import { useAuth } from "../../hooks/useAuth";
 
-export default function AppChatInput() {
+const CHANNEL_ID = "72399b52-0093-4522-b3b0-eae663805c73";
+
+type SendMessageDto = {
+  channelId: string;
+  message: string;
+};
+
+export type AppChatInputProps = {
+  scrollToBottom: VoidFunction;
+};
+
+export default function AppChatInput({ scrollToBottom }: AppChatInputProps) {
+  const [message, setMessage] = useState<string>("");
+  const user = useAuth();
+
+  async function sendMessage({
+    channelId,
+    message,
+  }: SendMessageDto): Promise<Message | null | undefined> {
+    if (!user) {
+      return null;
+    }
+
+    const { data, error } = await supabase
+      .from<Message>("messages")
+      .insert([{ channel_id: channelId, text: message, sent_by: user.id }]);
+
+    if (error) {
+      console.log(error);
+
+      return null;
+    }
+
+    setMessage("");
+    scrollToBottom();
+    return data?.shift();
+  }
+
+  function onKeyPress({ key }: any) {
+    if (!message) {
+      return;
+    }
+
+    if (key === "Enter") {
+      console.log("onKeyPress", { key, message });
+
+      sendMessage({
+        channelId: CHANNEL_ID,
+        message,
+      });
+    }
+  }
+
+  function onInput(event: any) {
+    if (!event) {
+      return;
+    }
+
+    setMessage(event?.target?.value);
+  }
+
   return (
-    <Box height="70px" paddingX="15px" backgroundColor={colors.grayLight}>
+    <Box paddingX="15px" backgroundColor={colors.grayLight}>
       <Box
         display="flex"
         justifyContent="space-around"
@@ -28,12 +91,28 @@ export default function AppChatInput() {
           height="35px"
           backgroundColor="transparent"
           color="white"
+          value={message}
           borderColor="transparent"
           placeholder="Message 💬-general"
+          onInput={onInput}
+          onKeyPress={onKeyPress}
         />
         <AppIconButton ariaLabel="Attach files" icon={<CalendarIcon />} />
         <AppIconButton ariaLabel="Select giphy" icon={<LinkIcon />} />
         <AppIconButton ariaLabel="Select emoji" icon={<AtSignIcon />} />
+      </Box>
+      <Box
+        marginY="5px"
+        display="flex"
+        justifyContent="start"
+        alignItems="center"
+      >
+        <Text color="white" fontSize="sm" marginRight="5px" fontWeight="bold">
+          carlomigueldy
+        </Text>
+        <Text color="white" fontSize="sm">
+          is typing...
+        </Text>
       </Box>
     </Box>
   );
