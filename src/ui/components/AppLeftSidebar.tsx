@@ -24,6 +24,9 @@ import { colors } from "../theme/colors";
 import AppCategoryList from "./AppCategoryList";
 import AppIconButton from "./AppIconButton";
 
+const CARLO_MIGUEL_DY_URL =
+  "https://scontent.fmnl25-1.fna.fbcdn.net/v/t1.6435-9/138022372_3881881045163509_7294372322424458231_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=174925&_nc_eui2=AeFnO8sgH47tHpZw6Zf7tBazQ7jT1m4ha1tDuNPWbiFrW8cq3qyRuzG8grx1_7DxFlb5zBTKZ7ObJs8I7FzQSuBp&_nc_ohc=erPfbho78dwAX-T9sq6&_nc_ht=scontent.fmnl25-1.fna&oh=7244200a8bb45f61cda2c6374523f8bc&oe=60A30876";
+
 export default function AppLeftSidebar() {
   return (
     <Box
@@ -104,7 +107,7 @@ function BottomSection() {
       backgroundColor={colors.grayDark}
     >
       <Center>
-        <Avatar size="sm" />
+        <Avatar src={CARLO_MIGUEL_DY_URL} size="sm" />
       </Center>
       <Box marginX="10px">
         <Text color="white" maxW="100px" fontSize="sm" isTruncated>
