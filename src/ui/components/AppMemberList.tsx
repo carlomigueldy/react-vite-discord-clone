@@ -9,9 +9,12 @@ export default function AppMemberList() {
       flexGrow={1}
       height="0px"
       display="flex"
-      overflowY="scroll"
+      overflowY="hidden"
       flexDirection="column"
       paddingX="5px"
+      _hover={{
+        overflowY: "scroll",
+      }}
     >
       <AppMemberGroup label="Novice" />
       <AppMemberGroup label="Angular Team Member" />
@@ -20,4 +23,3 @@ export default function AppMemberList() {
     </Box>
   );
 }
-

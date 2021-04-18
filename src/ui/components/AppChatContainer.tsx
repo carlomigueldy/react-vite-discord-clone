@@ -11,7 +11,7 @@ export default function AppChatContainer() {
       display="flex"
       justifyContent="space-between"
       flexDirection="column"
-      backgroundColor={colors.darkMedium}
+      backgroundColor={colors.grayLight}
     >
       <Box
         display="flex"

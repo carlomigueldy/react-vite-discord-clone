@@ -20,10 +20,29 @@ import {
 import React from "react";
 import { supabase } from "../../app/supabase";
 import { useAuth } from "../../hooks/useAuth";
+import { colors } from "../theme/colors";
 import AppCategoryList from "./AppCategoryList";
 import AppIconButton from "./AppIconButton";
 
 export default function AppLeftSidebar() {
+  return (
+    <Box
+      width="300px"
+      display="flex"
+      flexDirection="column"
+      justifyContent="space-between"
+      backgroundColor={colors.grayMedium}
+    >
+      <AppLeftSidebarTopbar />
+
+      <AppCategoryList />
+
+      <BottomSection />
+    </Box>
+  );
+}
+
+function AppLeftSidebarTopbar() {
   async function loginWithEmail() {
     const res = await supabase.auth.signIn({
       email: "carlomigueldy@gmail.com",
@@ -34,50 +53,38 @@ export default function AppLeftSidebar() {
 
   return (
     <Box
-      width="300px"
+      height="50px"
       display="flex"
-      flexDirection="column"
-      justifyContent="space-between"
-      backgroundColor="gray.700"
+      justifyContent="center"
+      alignItems="center"
+      paddingX="5px"
+      backgroundColor={colors.grayMedium}
+      borderBottomColor="gray"
+      borderBottomWidth="1px"
     >
-      <Box
-        height="50px"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        paddingX="5px"
-        backgroundColor="gray.900"
-        borderBottomColor="gray"
-        borderBottomWidth="1px"
-      >
-        <Menu>
-          <MenuButton
-            as={Button}
-            color="white"
-            width="full"
-            backgroundColor="transparent"
-            rightIcon={<ChevronDownIcon />}
-            _hover={{ background: "none" }}
-            _active={{ background: "none" }}
-          >
-            <Text maxW="225px" isTruncated>
-              Aviation Software Development
-            </Text>
-          </MenuButton>
-          <MenuList>
-            <MenuItem onClick={() => loginWithEmail()}>Sign In</MenuItem>
-            <MenuItem>Download</MenuItem>
-            <MenuItem>Create a Copy</MenuItem>
-            <MenuItem>Mark as Draft</MenuItem>
-            <MenuItem>Delete</MenuItem>
-            <MenuItem>Attend a Workshop</MenuItem>
-          </MenuList>
-        </Menu>
-      </Box>
-
-      <AppCategoryList />
-
-      <BottomSection />
+      <Menu>
+        <MenuButton
+          as={Button}
+          color="white"
+          width="full"
+          backgroundColor="transparent"
+          rightIcon={<ChevronDownIcon />}
+          _hover={{ background: "none" }}
+          _active={{ background: "none" }}
+        >
+          <Text maxW="225px" isTruncated>
+            Aviation Software Development
+          </Text>
+        </MenuButton>
+        <MenuList>
+          <MenuItem onClick={() => loginWithEmail()}>Sign In</MenuItem>
+          <MenuItem>Download</MenuItem>
+          <MenuItem>Create a Copy</MenuItem>
+          <MenuItem>Mark as Draft</MenuItem>
+          <MenuItem>Delete</MenuItem>
+          <MenuItem>Attend a Workshop</MenuItem>
+        </MenuList>
+      </Menu>
     </Box>
   );
 }
@@ -93,7 +100,8 @@ function BottomSection() {
       paddingX="5px"
       display="flex"
       justifyContent="center"
-      backgroundColor="gray.800"
+      alignItems="center"
+      backgroundColor={colors.grayDark}
     >
       <Center>
         <Avatar size="sm" />

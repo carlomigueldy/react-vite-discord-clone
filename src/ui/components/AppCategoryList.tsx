@@ -8,11 +8,17 @@ export default function AppCategoryList() {
       flexGrow={1}
       height="0px"
       display="flex"
-      overflowY="scroll"
+      overflow="hidden"
+      _hover={{
+        overflowY: "scroll",
+      }}
       flexDirection="column"
       paddingTop="10px"
       paddingX="5px"
     >
+      <CategoryChannelList></CategoryChannelList>
+      <CategoryChannelList></CategoryChannelList>
+      <CategoryChannelList></CategoryChannelList>
       <CategoryChannelList></CategoryChannelList>
     </Box>
   );

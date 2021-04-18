@@ -1,6 +1,7 @@
 import { Avatar } from "@chakra-ui/avatar";
 import { Box, Divider } from "@chakra-ui/layout";
 import React from "react";
+import { colors } from "../theme/colors";
 
 export default function AppMainSidebar() {
   return (
@@ -9,7 +10,7 @@ export default function AppMainSidebar() {
       paddingX="5px"
       paddingTop="15px"
       overflowX="hidden"
-      backgroundColor="gray.800"
+      backgroundColor={colors.grayDarkest}
       display="flex"
       flexDirection="column"
       alignItems="center"

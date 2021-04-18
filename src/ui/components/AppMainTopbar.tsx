@@ -16,7 +16,7 @@ export default function AppMainTopbar() {
   return (
     <Box
       height="50px"
-      backgroundColor={colors.darkMedium}
+      backgroundColor={colors.grayLight}
       borderBottomColor="gray"
       borderBottomWidth="1px"
       display="flex"
@@ -54,7 +54,7 @@ export default function AppMainTopbar() {
 
 function AppMainTopbarChannelName() {
   return (
-    <Box display="flex" alignItems="center">
+    <Box display="flex" alignItems="center" cursor="default">
       <Text
         marginRight="10px"
         fontStyle="italic"

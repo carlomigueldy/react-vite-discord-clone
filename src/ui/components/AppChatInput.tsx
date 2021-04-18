@@ -8,7 +8,7 @@ import { colors } from "../theme/colors";
 
 export default function AppChatInput() {
   return (
-    <Box height="70px" paddingX="15px" backgroundColor={colors.darkMedium}>
+    <Box height="70px" paddingX="15px" backgroundColor={colors.grayLight}>
       <Box
         display="flex"
         justifyContent="space-around"

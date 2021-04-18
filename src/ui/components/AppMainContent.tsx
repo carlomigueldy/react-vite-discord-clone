@@ -3,11 +3,12 @@ import { Box } from "@chakra-ui/layout";
 import AppChatContainer from "./AppChatContainer";
 import AppMainTopbar from "./AppMainTopbar";
 import AppRightSidebar from "./AppRightSidebar";
+import { colors } from "../theme/colors";
 
 export default function AppMainContent() {
   return (
     <Box
-      backgroundColor="gray.900"
+      backgroundColor={colors.grayLight}
       width="100%"
       display="flex"
       flexDirection="column"

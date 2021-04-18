@@ -21,7 +21,7 @@ export default function ChannelListItem({ label, active }: CategoryItemProps) {
         backgroundColor: "gray.600",
       }}
     >
-      <Text marginRight="10px" fontStyle="italic" fontSize="xl">
+      <Text color="gray.300" marginRight="10px" fontStyle="italic" fontSize="xl">
         #
       </Text>
       <Text color="white">{label}</Text>
