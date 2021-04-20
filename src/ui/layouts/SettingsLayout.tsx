@@ -1,4 +1,5 @@
-import { Box, Divider, Text } from "@chakra-ui/layout";
+import { SearchIcon } from "@chakra-ui/icons";
+import { Box, Divider, HStack, Text } from "@chakra-ui/layout";
 import React from "react";
 import { colors } from "../theme/colors";
 
@@ -10,7 +11,12 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
   return (
     <Box display="flex" height="100vh">
       <SettingsLeftSidebar />
-      <Box flex="2" height="100%" backgroundColor={colors.grayLight}>
+      <Box
+        flex="2"
+        height="100%"
+        backgroundColor={colors.grayLight}
+        overflowY="scroll"
+      >
         {children}
       </Box>
     </Box>
@@ -26,8 +32,12 @@ function SettingsLeftSidebar() {
       alignItems="start"
       height="100%"
       backgroundColor={colors.grayDark}
-      paddingTop="50px"
+      paddingY="50px"
       paddingX="15px"
+      overflow="hidden"
+      _hover={{
+        overflowY: "scroll",
+      }}
     >
       <Box display="flex" flexDirection="column">
         <SettingsListHeader>User Settings</SettingsListHeader>
@@ -37,13 +47,50 @@ function SettingsLeftSidebar() {
         <SettingsListItem label="Authorized Apps" />
         <SettingsListItem label="Connections" />
 
-        <Divider marginY="15px" />
+        <AppSettingsDivider />
 
         <SettingsListHeader>Billing Settings</SettingsListHeader>
         <SettingsListItem>Discord Nitro</SettingsListItem>
         <SettingsListItem>Server Boost</SettingsListItem>
         <SettingsListItem>Gift Inventory</SettingsListItem>
         <SettingsListItem>Billing</SettingsListItem>
+
+        <AppSettingsDivider />
+
+        <SettingsListHeader>App Settings</SettingsListHeader>
+        <SettingsListItem>Appearance</SettingsListItem>
+        <SettingsListItem>Accessibility</SettingsListItem>
+        <SettingsListItem>Voice & Video</SettingsListItem>
+        <SettingsListItem>Text & Images</SettingsListItem>
+        <SettingsListItem>Notifications</SettingsListItem>
+        <SettingsListItem>Keybinds</SettingsListItem>
+        <SettingsListItem>Language</SettingsListItem>
+        <SettingsListItem>Windows Settings</SettingsListItem>
+        <SettingsListItem>Streamer Mode</SettingsListItem>
+        <SettingsListItem>Advanced</SettingsListItem>
+
+        <AppSettingsDivider />
+
+        <SettingsListHeader>Gaming Settings</SettingsListHeader>
+        <SettingsListItem>Game Activity</SettingsListItem>
+        <SettingsListItem>Overlay</SettingsListItem>
+
+        <AppSettingsDivider />
+
+        <SettingsListHeader>Change Log</SettingsListHeader>
+        <SettingsListItem>HypeSquad</SettingsListItem>
+
+        <AppSettingsDivider />
+
+        <SettingsListItem color="red.600" hoverBackgroundColor="red.900">Log Out</SettingsListItem>
+
+        <AppSettingsDivider />
+
+        <HStack>
+          <SearchIcon color="white" />
+          <SearchIcon color="white" />
+          <SearchIcon color="white" />
+        </HStack>
       </Box>
     </Box>
   );
@@ -53,9 +100,17 @@ type SettingsListItemProps = {
   label?: string;
   active?: boolean;
   children?: React.ReactNode;
+  color?: string;
+  hoverBackgroundColor?: string;
 };
 
-function SettingsListItem({ active, label, children }: SettingsListItemProps) {
+function SettingsListItem({
+  active,
+  label,
+  color,
+  hoverBackgroundColor,
+  children,
+}: SettingsListItemProps) {
   return (
     <Box
       paddingX="5px"
@@ -64,9 +119,13 @@ function SettingsListItem({ active, label, children }: SettingsListItemProps) {
       marginY="2px"
       borderRadius="sm"
       cursor="pointer"
-      color={active ? "white" : "gray.400"}
+      color={!!color ? color : active ? "white" : "gray.400"}
       backgroundColor={active ? colors.lightGray : "transparent"}
-      _hover={{ backgroundColor: colors.grayLight }}
+      _hover={{
+        backgroundColor: !!hoverBackgroundColor
+          ? hoverBackgroundColor
+          : colors.grayLight,
+      }}
     >
       <Text>{!!label ? label : children}</Text>
     </Box>
@@ -88,5 +147,13 @@ function SettingsListHeader({ children }: SettingsListHeaderProps) {
     >
       {children}
     </Text>
+  );
+}
+
+function AppSettingsDivider() {
+  return (
+    <Box>
+      <Divider marginY="15px" />
+    </Box>
   );
 }
