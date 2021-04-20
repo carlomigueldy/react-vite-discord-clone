@@ -44,7 +44,9 @@ export default function AppChatContainer() {
   };
 
   useEffect(() => {
-    fetchMessages();
+    fetchMessages().then(() => {
+      scrollToBottom();
+    });
 
     messagesSubscription();
   }, []);
