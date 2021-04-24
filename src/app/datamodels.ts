@@ -5,6 +5,12 @@ export interface BaseModel {
   deleted_at?: Date;
 }
 
+export interface AppUser extends BaseModel {
+  email: string;
+  name: string;
+  avatar?: string;
+}
+
 export interface Server extends BaseModel {
   name: string;
   created_by: string;
@@ -24,6 +30,7 @@ export interface Channel extends BaseModel {
 }
 
 export interface Message extends BaseModel {
+  app_users?: AppUser | null | undefined;
   channel_id: string;
   text: string;
   sent_by: string;
