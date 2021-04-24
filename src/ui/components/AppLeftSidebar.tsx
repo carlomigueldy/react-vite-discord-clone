@@ -21,7 +21,10 @@ import React from "react";
 import { useHistory } from "react-router";
 import { supabase } from "../../app/supabase";
 import { useAuth } from "../../hooks/useAuth";
-import { DEFAULT_REDIRECT_ROUTE, OTHER_REDIRECT_ROUTE } from "../../routes/AppRouteProvider";
+import {
+  DEFAULT_REDIRECT_ROUTE,
+  OTHER_REDIRECT_ROUTE,
+} from "../../routes/AppRouteProvider";
 import { colors } from "../theme/colors";
 import AppCategoryList from "./AppCategoryList";
 import AppIconButton from "./AppIconButton";
@@ -48,12 +51,11 @@ export default function AppLeftSidebar() {
 }
 
 function AppLeftSidebarTopbar() {
-  async function loginWithEmail() {
-    const res = await supabase.auth.signIn({
-      email: "carlomigueldy@gmail.com",
-      // email: "dev@dev.com",
-    });
-    console.log("[loginWithEmail]", res);
+  async function loginWithEmail() {}
+
+  async function logout() {
+    await supabase.auth.signOut();
+    useAuth();
   }
 
   return (
@@ -82,12 +84,8 @@ function AppLeftSidebarTopbar() {
           </Text>
         </MenuButton>
         <MenuList>
-          <MenuItem onClick={() => loginWithEmail()}>Sign In</MenuItem>
-          <MenuItem>Download</MenuItem>
-          <MenuItem>Create a Copy</MenuItem>
-          <MenuItem>Mark as Draft</MenuItem>
-          <MenuItem>Delete</MenuItem>
-          <MenuItem>Attend a Workshop</MenuItem>
+          <MenuItem onClick={loginWithEmail}>Sign In</MenuItem>
+          <MenuItem onClick={logout}>Logout</MenuItem>
         </MenuList>
       </Menu>
     </Box>
