@@ -16,6 +16,9 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
         height="100%"
         backgroundColor={colors.grayLight}
         overflowY="scroll"
+        paddingX="30px"
+        paddingY="50px"
+        color="white"
       >
         {children}
       </Box>
@@ -119,7 +122,7 @@ function SettingsListItem({
       marginY="2px"
       borderRadius="sm"
       cursor="pointer"
-      color={!!color ? color : active ? "white" : "gray.400"}
+      color={!!color ? color : active ? "white" : "whiteAlpha.500"}
       backgroundColor={active ? colors.lightGray : "transparent"}
       _hover={{
         backgroundColor: !!hoverBackgroundColor

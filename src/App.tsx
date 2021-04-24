@@ -1,29 +1,20 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import AppRouteProvider from "./routes/AppRouteProvider";
 import React from "react";
 import "./App.css";
-import AppRouteProvider from "./routes/AppRouteProvider";
-
 import "@fontsource/sora";
-import AppMainLayout from "./ui/layouts/MainLayout";
-import SettingsLayout from "./ui/layouts/SettingsLayout";
 
 const theme = extendTheme({
   fonts: {
-    heading: "Sora",
-    body: "Sora",
+    heading: `Sora, Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif`,
+    body: `Sora, Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif`,
   },
 });
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      {/* <AppMainLayout>
-        <AppRouteProvider></AppRouteProvider>
-      </AppMainLayout> */}
-
-      <SettingsLayout>
-        <AppRouteProvider></AppRouteProvider>
-      </SettingsLayout>
+      <AppRouteProvider></AppRouteProvider>
     </ChakraProvider>
   );
 }
