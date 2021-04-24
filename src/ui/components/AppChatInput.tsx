@@ -11,6 +11,8 @@ import { useAuth } from "../../hooks/useAuth";
 
 const CHANNEL_ID = "4caf111f-ed31-4e81-8735-f92d5860c878";
 
+const GUEST_USER_ID = "78085bee-8de6-4d20-afa7-4375d9971064";
+
 type SendMessageDto = {
   channelId: string;
   message: string;
@@ -29,15 +31,21 @@ export default function AppChatInput({ scrollToBottom }: AppChatInputProps) {
     channelId,
     message,
   }: SendMessageDto): Promise<Message | null | undefined> {
-    setLoading(true)
-    
+    setLoading(true);
+
     if (!user) {
       return null;
     }
 
     const { data, error } = await supabase
       .from<Message>("messages")
-      .insert([{ channel_id: channelId, text: message, sent_by: user.id }]);
+      .insert([
+        {
+          channel_id: channelId,
+          text: message,
+          sent_by: user?.id || GUEST_USER_ID,
+        },
+      ]);
 
     if (error) {
       console.log(error);
@@ -47,7 +55,7 @@ export default function AppChatInput({ scrollToBottom }: AppChatInputProps) {
 
     setMessage("");
     scrollToBottom();
-    setLoading(false)
+    setLoading(false);
     return data?.shift();
   }
 
