@@ -120,7 +120,7 @@ function BottomSection() {
       </Center>
       <Box marginX="10px">
         <Text color="white" maxW="100px" fontSize="sm" isTruncated>
-          {user?.email ?? "Unknown user"}
+          {user?.email ?? "Guest"}
         </Text>
 
         <Text color="gray.500" fontSize="xs">

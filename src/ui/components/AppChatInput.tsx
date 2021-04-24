@@ -33,19 +33,13 @@ export default function AppChatInput({ scrollToBottom }: AppChatInputProps) {
   }: SendMessageDto): Promise<Message | null | undefined> {
     setLoading(true);
 
-    if (!user) {
-      return null;
-    }
-
-    const { data, error } = await supabase
-      .from<Message>("messages")
-      .insert([
-        {
-          channel_id: channelId,
-          text: message,
-          sent_by: user?.id || GUEST_USER_ID,
-        },
-      ]);
+    const { data, error } = await supabase.from<Message>("messages").insert([
+      {
+        channel_id: channelId,
+        text: message,
+        sent_by: user?.id || GUEST_USER_ID,
+      },
+    ]);
 
     if (error) {
       console.log(error);
