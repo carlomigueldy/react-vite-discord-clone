@@ -6,7 +6,7 @@ import AppMainContent from "../components/AppMainContent";
 import AppMainSidebar from "../components/AppMainSidebar";
 
 type Props = {
-  children: JSX.Element;
+  children: React.ReactNode;
 };
 
 export default function AppMainLayout({ children }: Props) {
@@ -14,7 +14,7 @@ export default function AppMainLayout({ children }: Props) {
     <Box height="100vh" display="flex" justifyContent="space-between">
       <AppMainSidebar />
       <AppLeftSidebar />
-      <AppMainContent />
+      <AppMainContent>{children}</AppMainContent>
     </Box>
   );
 }

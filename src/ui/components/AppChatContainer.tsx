@@ -11,9 +11,11 @@ import { User } from "@supabase/gotrue-js";
 import { SupabaseRealtimePayload } from "@supabase/supabase-js";
 import { Spinner } from "@chakra-ui/spinner";
 
-const CHANNEL_ID = "4caf111f-ed31-4e81-8735-f92d5860c878";
+export type AppChatContainerProps = {
+  channelId: string;
+};
 
-export default function AppChatContainer() {
+export default function AppChatContainer({ channelId }: AppChatContainerProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setLoading] = useState<boolean>(false);
   const toast = useToast();
@@ -23,9 +25,9 @@ export default function AppChatContainer() {
 
   const messagesSubscription = () => {
     supabase
-      .from<Message>(`messages:channel_id=eq.${CHANNEL_ID}`)
+      .from<Message>(`messages:channel_id=eq.${channelId}`)
       .on("*", async (payload) => {
-        console.log(`\n\n messages:channel_id=eq.${CHANNEL_ID} \n\n`, payload);
+        console.log(`\n\n messages:channel_id=eq.${channelId} \n\n`, payload);
 
         switch (payload.eventType) {
           case "INSERT":
@@ -99,6 +101,7 @@ export default function AppChatContainer() {
   }
 
   useEffect(() => {
+    console.log('\n\n AppChatContainer mounted \n\n')
     fetchMessages().then(() => {
       scrollToBottom();
     });
@@ -115,13 +118,7 @@ export default function AppChatContainer() {
   );
 
   return (
-    <Box
-      width="100%"
-      display="flex"
-      justifyContent="space-between"
-      flexDirection="column"
-      backgroundColor={colors.grayLight}
-    >
+    <>
       <Box
         display="flex"
         flexGrow={1}
@@ -146,7 +143,7 @@ export default function AppChatContainer() {
       </Box>
 
       <AppChatInput scrollToBottom={scrollToBottom} />
-    </Box>
+    </>
   );
 }
 
