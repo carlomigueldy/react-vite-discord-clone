@@ -18,8 +18,13 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
+import { useHistory } from "react-router";
 import { supabase } from "../../app/supabase";
 import { useAuth } from "../../hooks/useAuth";
+import {
+  DEFAULT_REDIRECT_ROUTE,
+  OTHER_REDIRECT_ROUTE,
+} from "../../routes/AppRouteProvider";
 import { colors } from "../theme/colors";
 import AppCategoryList from "./AppCategoryList";
 import AppIconButton from "./AppIconButton";
@@ -46,12 +51,11 @@ export default function AppLeftSidebar() {
 }
 
 function AppLeftSidebarTopbar() {
-  async function loginWithEmail() {
-    const res = await supabase.auth.signIn({
-      email: "carlomigueldy@gmail.com",
-      // email: "dev@dev.com",
-    });
-    console.log("[loginWithEmail]", res);
+  async function loginWithEmail() {}
+
+  async function logout() {
+    await supabase.auth.signOut();
+    useAuth();
   }
 
   return (
@@ -80,12 +84,8 @@ function AppLeftSidebarTopbar() {
           </Text>
         </MenuButton>
         <MenuList>
-          <MenuItem onClick={() => loginWithEmail()}>Sign In</MenuItem>
-          <MenuItem>Download</MenuItem>
-          <MenuItem>Create a Copy</MenuItem>
-          <MenuItem>Mark as Draft</MenuItem>
-          <MenuItem>Delete</MenuItem>
-          <MenuItem>Attend a Workshop</MenuItem>
+          <MenuItem onClick={loginWithEmail}>Sign In</MenuItem>
+          <MenuItem onClick={logout}>Logout</MenuItem>
         </MenuList>
       </Menu>
     </Box>
@@ -94,6 +94,15 @@ function AppLeftSidebarTopbar() {
 
 function BottomSection() {
   const user = useAuth();
+  const history = useHistory();
+
+  function toSettingsView() {
+    history.push("/settings");
+  }
+
+  function toOther() {
+    history.push(OTHER_REDIRECT_ROUTE);
+  }
 
   console.log("[useAuth]", user);
 
@@ -124,12 +133,16 @@ function BottomSection() {
           icon={<InfoOutlineIcon />}
         ></AppIconButton>
         <AppIconButton
-          ariaLabel="Mute mic"
+          ariaLabel="To other"
+          tooltip="Other"
           icon={<RepeatIcon />}
+          onClick={toOther}
         ></AppIconButton>
         <AppIconButton
-          ariaLabel="Mute mic"
+          ariaLabel="Settings"
+          tooltip="Settings"
           icon={<SettingsIcon />}
+          onClick={toSettingsView}
         ></AppIconButton>
       </HStack>
     </Box>

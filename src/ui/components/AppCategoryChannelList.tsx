@@ -1,24 +1,25 @@
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Box, Text } from "@chakra-ui/layout";
 import React from "react";
-import ChannelListItem from "./AppChannelListItem";
+import { useHistory } from "react-router";
+import AppChannelListItem from "./AppChannelListItem";
 
-export default function CategoryChannelList() {
+export default function AppCategoryChannelList() {
   return (
     <Box marginY="5px">
       <Text color="white" fontSize="xs" fontWeight="bold" marginBottom="5px">
         <ChevronRightIcon /> {"🛫 Main".toUpperCase()}
       </Text>
-      <ChannelListItem active label="💬-general" />
-      <ChannelListItem label="🎙️-announcement" />
-      <ChannelListItem label="🔵-tasks" />
-      <ChannelListItem label="🧰-guide" />
-      <ChannelListItem label="🤯-help" />
-      <ChannelListItem label="🚫-absent-notice" />
-      <ChannelListItem label="📄-report-drafts" />
-      <ChannelListItem label="💸-invoice" />
-      <ChannelListItem label="🔧-needs-hotfix" />
-      <ChannelListItem label="🚀-schema-updates" />
+      <AppChannelListItem active label="💬-general" />
+      <AppChannelListItem label="🎙️-announcement" />
+      <AppChannelListItem label="🔵-tasks" />
+      <AppChannelListItem label="🧰-guide" />
+      <AppChannelListItem label="🤯-help" />
+      <AppChannelListItem label="🚫-absent-notice" />
+      <AppChannelListItem label="📄-report-drafts" />
+      <AppChannelListItem label="💸-invoice" />
+      <AppChannelListItem label="🔧-needs-hotfix" />
+      <AppChannelListItem label="🚀-schema-updates" />
     </Box>
   );
 }

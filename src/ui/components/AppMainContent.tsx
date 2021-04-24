@@ -5,7 +5,11 @@ import AppMainTopbar from "./AppMainTopbar";
 import AppRightSidebar from "./AppRightSidebar";
 import { colors } from "../theme/colors";
 
-export default function AppMainContent() {
+export type AppMainContentProps = {
+  children: React.ReactNode;
+};
+
+export default function AppMainContent({ children }: AppMainContentProps) {
   return (
     <Box
       backgroundColor={colors.grayLight}
@@ -17,7 +21,15 @@ export default function AppMainContent() {
       <AppMainTopbar />
 
       <Box flexGrow={1} display="flex" justifyContent="space-between">
-        <AppChatContainer />
+        <Box
+          width="100%"
+          display="flex"
+          justifyContent="space-between"
+          flexDirection="column"
+          backgroundColor={colors.grayLight}
+        >
+          {children}
+        </Box>
 
         <AppRightSidebar />
       </Box>

@@ -9,7 +9,9 @@ import { supabase } from "../../app/supabase";
 import { Message } from "../../app/datamodels";
 import { useAuth } from "../../hooks/useAuth";
 
-const CHANNEL_ID = "72399b52-0093-4522-b3b0-eae663805c73";
+const CHANNEL_ID = "4caf111f-ed31-4e81-8735-f92d5860c878";
+
+const GUEST_USER_ID = "78085bee-8de6-4d20-afa7-4375d9971064";
 
 type SendMessageDto = {
   channelId: string;
@@ -22,19 +24,28 @@ export type AppChatInputProps = {
 
 export default function AppChatInput({ scrollToBottom }: AppChatInputProps) {
   const [message, setMessage] = useState<string>("");
+  const [isLoading, setLoading] = useState<boolean>(false);
   const user = useAuth();
 
   async function sendMessage({
     channelId,
     message,
   }: SendMessageDto): Promise<Message | null | undefined> {
+    setLoading(true);
+
     if (!user) {
       return null;
     }
 
     const { data, error } = await supabase
       .from<Message>("messages")
-      .insert([{ channel_id: channelId, text: message, sent_by: user.id }]);
+      .insert([
+        {
+          channel_id: channelId,
+          text: message,
+          sent_by: user?.id || GUEST_USER_ID,
+        },
+      ]);
 
     if (error) {
       console.log(error);
@@ -44,6 +55,7 @@ export default function AppChatInput({ scrollToBottom }: AppChatInputProps) {
 
     setMessage("");
     scrollToBottom();
+    setLoading(false);
     return data?.shift();
   }
 
@@ -96,6 +108,7 @@ export default function AppChatInput({ scrollToBottom }: AppChatInputProps) {
           placeholder="Message 💬-general"
           onInput={onInput}
           onKeyPress={onKeyPress}
+          disabled={isLoading}
         />
         <AppIconButton ariaLabel="Attach files" icon={<CalendarIcon />} />
         <AppIconButton ariaLabel="Select giphy" icon={<LinkIcon />} />

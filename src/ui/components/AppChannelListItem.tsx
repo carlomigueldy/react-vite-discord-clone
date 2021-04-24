@@ -1,12 +1,17 @@
 import React from "react";
 import { Box, Text } from "@chakra-ui/layout";
 
-export type CategoryItemProps = {
+export type AppCategoryItemProps = {
   label: string;
   active?: boolean;
+  onClick?: VoidFunction;
 };
 
-export default function ChannelListItem({ label, active }: CategoryItemProps) {
+export default function AppChannelListItem({
+  label,
+  active,
+  onClick,
+}: AppCategoryItemProps) {
   return (
     <Box
       display="flex"
@@ -17,11 +22,17 @@ export default function ChannelListItem({ label, active }: CategoryItemProps) {
       borderRadius="3px"
       marginY="2px"
       cursor="pointer"
+      onClick={onClick}
       _hover={{
         backgroundColor: "gray.600",
       }}
     >
-      <Text color="gray.300" marginRight="10px" fontStyle="italic" fontSize="xl">
+      <Text
+        color="gray.300"
+        marginRight="10px"
+        fontStyle="italic"
+        fontSize="xl"
+      >
         #
       </Text>
       <Text color="white">{label}</Text>

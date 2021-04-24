@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { Route, Switch } from "react-router-dom";
 import { supabase } from "../../app/supabase";
+import AppChatContainer from "../components/AppChatContainer";
 
 function IndexView() {
   const [servers, setServers] = useState<any[] | null>([]);
+  const { channelId } = useParams<{ channelId: string }>();
 
-  useEffect(() => {
-    supabase.from("servers").then((res) => {
-      setServers(res.data);
-    });
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
-      <h1>Index View</h1>
-
-      <pre>{JSON.stringify(servers, null, 2)}</pre>
+      <Switch>
+        <Route path="/">
+          <AppChatContainer channelId={channelId} />
+        </Route>
+      </Switch>
     </>
   );
 }

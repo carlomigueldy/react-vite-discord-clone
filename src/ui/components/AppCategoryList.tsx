@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/layout";
 import React from "react";
-import CategoryChannelList from "./AppCategoryChannelList";
+import AppCategoryChannelList from "./AppCategoryChannelList";
 
 export default function AppCategoryList() {
   return (
@@ -16,10 +16,10 @@ export default function AppCategoryList() {
       paddingTop="10px"
       paddingX="5px"
     >
-      <CategoryChannelList></CategoryChannelList>
-      <CategoryChannelList></CategoryChannelList>
-      <CategoryChannelList></CategoryChannelList>
-      <CategoryChannelList></CategoryChannelList>
+      <AppCategoryChannelList></AppCategoryChannelList>
+      <AppCategoryChannelList></AppCategoryChannelList>
+      <AppCategoryChannelList></AppCategoryChannelList>
+      <AppCategoryChannelList></AppCategoryChannelList>
     </Box>
   );
 }
