@@ -49,7 +49,7 @@ export default function AppChatContainer({ channelId }: AppChatContainerProps) {
               app_users: data,
             };
             notifyNewMessage(payload);
-            setMessages((old) => [...old, newMessage]);
+            setMessages((old) => [newMessage, ...old]);
             break;
 
           case "DELETE":
@@ -83,7 +83,9 @@ export default function AppChatContainer({ channelId }: AppChatContainerProps) {
 
     const { data, error } = await supabase
       .from<Message>("messages")
-      .select("*, app_users (*)");
+      .select("*, app_users (*)")
+      .limit(50)
+      .order("created_at", { ascending: false });
 
     if (error) {
       console.error(error);
@@ -101,7 +103,7 @@ export default function AppChatContainer({ channelId }: AppChatContainerProps) {
   }
 
   useEffect(() => {
-    console.log('\n\n AppChatContainer mounted \n\n')
+    console.log("\n\n AppChatContainer mounted \n\n");
     fetchMessages().then(() => {
       scrollToBottom();
     });
@@ -122,10 +124,20 @@ export default function AppChatContainer({ channelId }: AppChatContainerProps) {
       <Box
         display="flex"
         flexGrow={1}
-        flexDirection="column"
+        flexDirection="column-reverse"
         height="0px"
         overflowY="scroll"
       >
+        <div
+          ref={bottom}
+          style={{
+            color: "blue",
+            height: "100px",
+            width: "100px",
+            position: "relative",
+          }}
+        />
+
         {/* Messages */}
         {isLoading ? (
           <Center height="100%">
@@ -138,8 +150,6 @@ export default function AppChatContainer({ channelId }: AppChatContainerProps) {
             <Text color="white">No messages</Text>
           </Center>
         )}
-
-        <div ref={bottom} />
       </Box>
 
       <AppChatInput scrollToBottom={scrollToBottom} />
@@ -152,6 +162,14 @@ type AppMessageContainerProps = {
 };
 
 function AppMessageContainer({ message }: AppMessageContainerProps) {
+  const isToday =
+    new Date(message.created_at).toLocaleDateString() ===
+    new Date().toLocaleDateString();
+
+  const date = `${
+    isToday ? "Today" : new Date(message.created_at).toLocaleDateString()
+  } at ${new Date(message.created_at).toLocaleTimeString()}`;
+
   return (
     <Box position="relative" paddingY="5px">
       {/* Message Content */}
@@ -173,7 +191,7 @@ function AppMessageContainer({ message }: AppMessageContainerProps) {
             </Text>
             <Box width="10px" />
             <Text fontSize="12px" color="whiteAlpha.500">
-              Today at 9:38 AM
+              {date}
             </Text>
           </Box>
           <Text fontSize="sm" color="white">
