@@ -79,7 +79,7 @@ function AppMainTopbarChannelName() {
       >
         #
       </Text>
-      <Text color="white">💬-general</Text>
+      <Text color="white">💬-general (Server is hosted on Singapore region)</Text>
     </Box>
   );
 }
